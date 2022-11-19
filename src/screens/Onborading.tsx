@@ -7,24 +7,35 @@ import {
   Text,
 } from 'native-base';
 import Onboarding from 'react-native-onboarding-swiper';
-// import messaging from '@react-native-firebase/messaging';
+import messaging from '@react-native-firebase/messaging';
+import {useNavigation} from '@react-navigation/native';
+import {useSetOnboarding} from '../hooks/reactQueryHooks';
 
 export type IOnboradingProps = {};
 
 const Onborading: React.FC<IOnboradingProps> = ({}) => {
-  // async function requestUserPermission() {
-  //   const authStatus = await messaging().requestPermission();
-  //   const enabled =
-  //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-  //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  const navigation = useNavigation();
+  const {refetch} = useSetOnboarding();
 
-  //   if (enabled) {
-  //     console.log('Authorization status:', authStatus);
-  //   }
-  // }
+  const onFinishOnboarding = () => {
+    navigation.navigate('Home');
+    refetch();
+  };
+
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      onFinishOnboarding();
+    }
+  }
 
   return (
     <Onboarding
+      showDone={false}
       nextLabel={
         <Center p={2}>
           <ChevronRightIcon color="white" size="6" />
@@ -57,7 +68,9 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
                 alt={'Github Finder Logo'}
               />
               <Button
-                // onPress={() => requestUserPermission()}
+                onPress={() => {
+                  requestUserPermission();
+                }}
                 w={'80%'}
                 mb={4}
                 borderRadius={'lg'}
@@ -67,6 +80,7 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
                 Allow
               </Button>
               <Button
+                onPress={onFinishOnboarding}
                 variant={'ghost'}
                 borderRadius={'lg'}
                 _text={{color: '#9DD5C0'}}

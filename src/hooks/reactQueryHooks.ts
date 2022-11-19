@@ -1,5 +1,12 @@
 import {useQuery} from 'react-query';
-import {getUserAndRepos, searchUser} from '../lib/api';
+import {
+  getOnboarding,
+  getUserAndRepos,
+  searchUser,
+  setOnboarding,
+} from '../lib/api';
+
+// GITHUB
 
 export const useUsers = (search: string) => {
   return useQuery({
@@ -13,6 +20,24 @@ export const useUserAndRepos = (login: string) => {
   return useQuery({
     queryKey: login,
     queryFn: () => getUserAndRepos(login),
+    // enabled: false,
+  });
+};
+
+// ASYNC STORAGE
+
+export const useSetOnboarding = () => {
+  return useQuery({
+    queryKey: 'setOnBoarding',
+    queryFn: setOnboarding,
+    enabled: false,
+  });
+};
+
+export const useGetOnboarding = () => {
+  return useQuery({
+    queryKey: 'getOnBoarding',
+    queryFn: getOnboarding,
     // enabled: false,
   });
 };

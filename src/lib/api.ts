@@ -1,6 +1,9 @@
 import {useQuery} from 'react-query';
 import axios from 'axios';
 import {GITHUB_TOKEN, GITHUB_URL} from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// GITHUB
 
 const github = axios.create({
   baseURL: GITHUB_URL,
@@ -32,4 +35,25 @@ export const getUserAndRepos = async (login: string) => {
   ]);
 
   return {user, repos};
+};
+
+// ASYNC STORAGE
+
+export const setOnboarding = async () => {
+  try {
+    await AsyncStorage.setItem('@isOnboarding', 'false');
+    console.log('onboarding set');
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getOnboarding = async () => {
+  try {
+    return await AsyncStorage.getItem('@isOnboarding');
+  } catch (e) {
+    console.log(e);
+  }
+
+  console.log('Done.');
 };
