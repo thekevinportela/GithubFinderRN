@@ -7,21 +7,21 @@ import {
   Text,
 } from 'native-base';
 import Onboarding from 'react-native-onboarding-swiper';
-// import messaging from '@react-native-firebase/messaging';
+import messaging from '@react-native-firebase/messaging';
 
 export type IOnboradingProps = {};
 
 const Onborading: React.FC<IOnboradingProps> = ({}) => {
-  // async function requestUserPermission() {
-  //   const authStatus = await messaging().requestPermission();
-  //   const enabled =
-  //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-  //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-  //   if (enabled) {
-  //     console.log('Authorization status:', authStatus);
-  //   }
-  // }
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
 
   return (
     <Onboarding
