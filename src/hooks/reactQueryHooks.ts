@@ -26,16 +26,16 @@ export const useUserAndRepos = (login: string) => {
 
 // ASYNC STORAGE
 
-export const useSetOnboarding = () => {
-  return useQuery({
+export const useSetOnboarding = () =>
+  useQuery({
     queryKey: 'setOnBoarding',
     queryFn: setOnboarding,
     enabled: false,
   });
 };
 
-export const useGetOnboarding = () => {
-  return useQuery({
+export const useGetOnboarding = () =>
+  useQuery({
     queryKey: 'getOnBoarding',
     queryFn: getOnboarding,
     // enabled: false,
