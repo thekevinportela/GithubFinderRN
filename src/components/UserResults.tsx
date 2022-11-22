@@ -32,6 +32,7 @@ const UserResults: React.FC<IUserResultsProps> = ({search}) => {
           data={data}
           renderItem={({item}) => <UserItem user={item} />}
           keyExtractor={item => item.id}
+          keyboardDismissMode="interactive"
         />
       )}
     </Box>

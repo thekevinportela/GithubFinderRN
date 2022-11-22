@@ -32,7 +32,6 @@ export const useSetOnboarding = () =>
     queryFn: setOnboarding,
     enabled: false,
   });
-};
 
 export const useGetOnboarding = () =>
   useQuery({
@@ -40,4 +39,3 @@ export const useGetOnboarding = () =>
     queryFn: getOnboarding,
     // enabled: false,
   });
-};

@@ -1,4 +1,5 @@
-import {Box, HStack, Icon, Text} from 'native-base';
+import {useNavigation} from '@react-navigation/native';
+import {Box, HStack, Icon, Pressable, Text} from 'native-base';
 import React from 'react';
 import {View} from 'react-native';
 import {RepoBadge} from './RepoBadge';
@@ -26,8 +27,16 @@ const RepoItem: React.FC<IRepoItemProps> = ({repo}) => {
     stargazers_count,
   } = repo;
 
+  const navigation = useNavigation();
+
   return (
-    <Box borderRadius={'xl'} w={'90%'} bg={'gray.800'} padding={4} mb={2}>
+    <Pressable
+      onPress={() => navigation.navigate('Repo', {html_url})}
+      borderRadius={'xl'}
+      w={'90%'}
+      bg={'gray.800'}
+      padding={4}
+      mb={2}>
       <Text fontSize={16} color={'white'}>
         {name}
       </Text>
@@ -44,7 +53,7 @@ const RepoItem: React.FC<IRepoItemProps> = ({repo}) => {
         <RepoBadge iconName="exclamation" color="#F77272" data={open_issues} />
         <RepoBadge iconName="code-branch" color="#37D399" data={forks} />
       </HStack>
-    </Box>
+    </Pressable>
   );
 };
 
