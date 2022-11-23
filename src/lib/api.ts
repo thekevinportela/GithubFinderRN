@@ -36,24 +36,3 @@ export const getUserAndRepos = async (login: string) => {
 
   return {user, repos};
 };
-
-// ASYNC STORAGE
-
-export const setOnboarding = async () => {
-  try {
-    await AsyncStorage.setItem('@isOnboarding', 'false');
-    console.log('onboarding set');
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getOnboarding = async () => {
-  try {
-    return await AsyncStorage.getItem('@isOnboarding');
-  } catch (e) {
-    console.log(e);
-  }
-
-  console.log('Done.');
-};

@@ -1,5 +1,6 @@
-import {Box} from 'native-base';
+import {Box, Modal, Pressable, Text} from 'native-base';
 import React from 'react';
+// import {Text} from 'react-native-svg';
 import {WebView} from 'react-native-webview';
 import {WVHeader} from '../components/WVHeader';
 

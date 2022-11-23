@@ -8,19 +8,12 @@ import {
 } from 'native-base';
 import Onboarding from 'react-native-onboarding-swiper';
 import messaging from '@react-native-firebase/messaging';
-import {useNavigation} from '@react-navigation/native';
-import {useSetOnboarding} from '../hooks/reactQueryHooks';
+import useAuthStore from '../stores/auth';
 
 export type IOnboradingProps = {};
 
 const Onborading: React.FC<IOnboradingProps> = ({}) => {
-  const navigation = useNavigation();
-  const {refetch} = useSetOnboarding();
-
-  const onFinishOnboarding = () => {
-    navigation.navigate('Home');
-    refetch();
-  };
+  const {setOnboarding} = useAuthStore();
 
   async function requestUserPermission() {
     const authStatus = await messaging().requestPermission();
@@ -29,7 +22,7 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      onFinishOnboarding();
+      setOnboarding();
     }
   }
 
@@ -80,7 +73,7 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
                 Allow
               </Button>
               <Button
-                onPress={onFinishOnboarding}
+                onPress={setOnboarding}
                 variant={'ghost'}
                 borderRadius={'lg'}
                 _text={{color: '#9DD5C0'}}

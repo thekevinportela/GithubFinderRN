@@ -2,19 +2,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Loader} from '../components/Loader';
 import {useGetOnboarding} from '../hooks/reactQueryHooks';
+import useAuthStore from '../stores/auth';
 import Main from './Main';
 import Onboarding from './Onboarding';
 
 const Navigation = () => {
-  const {status, data} = useGetOnboarding();
-  console.log('DATA', data);
-  if (status === 'loading') {
-    return <Loader />;
-  }
+  const {isOnboarding} = useAuthStore();
+  console.log(isOnboarding);
 
   return (
     <NavigationContainer>
-      {data === null ? <Onboarding /> : <Main />}
+      {isOnboarding ? <Onboarding /> : <Main />}
     </NavigationContainer>
   );
 };
