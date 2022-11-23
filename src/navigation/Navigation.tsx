@@ -7,7 +7,7 @@ import Main from './Main';
 import Onboarding from './Onboarding';
 
 const Navigation = () => {
-  const {isOnboarding} = useAuthStore();
+  const isOnboarding = useAuthStore(state => state.isOnboarding);
   console.log(isOnboarding);
 
   return (
