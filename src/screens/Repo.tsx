@@ -10,7 +10,6 @@ export type IRepoProps = {
 
 const Repo: React.FC<IRepoProps> = ({route}) => {
   const {html_url} = route.params;
-  console.log('URL', html_url);
 
   return (
     <>

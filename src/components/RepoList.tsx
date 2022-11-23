@@ -7,7 +7,6 @@ export type IRepoListProps = {
 };
 
 const RepoList: React.FC<IRepoListProps> = ({repos}) => {
-  // repos.map(repo => console.log('REPO: ', repo));
   return (
     <Box w={'100%'}>
       <Text fontSize={16} pl={6} py={4} color={'white'}>
