@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A040EB2929284D8E00114A76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A040EB2829284D8E00114A76 /* GoogleService-Info.plist */; };
+		A0177EF229342EFC00E0E181 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0177EF129342EFC00E0E181 /* GoogleService-Info.plist */; };
 		A0B0E20F2929AC7D00B2A508 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0B0E20E2929AC7D00B2A508 /* AppCenter-Config.plist */; };
 		AE61B87FF85438A792A76CF5 /* Pods_GithubFinderRN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EDA8C608F0EBC001AAB8497 /* Pods_GithubFinderRN.framework */; };
 		D28DFA097CA887DC3BEF88F8 /* Pods_GithubFinderRN_GithubFinderRNTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2706D4CF24850798A679498 /* Pods_GithubFinderRN_GithubFinderRNTests.framework */; };
@@ -44,7 +44,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GithubFinderRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-GithubFinderRN-GithubFinderRNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubFinderRN-GithubFinderRNTests.release.xcconfig"; path = "Target Support Files/Pods-GithubFinderRN-GithubFinderRNTests/Pods-GithubFinderRN-GithubFinderRNTests.release.xcconfig"; sourceTree = "<group>"; };
 		9EDA8C608F0EBC001AAB8497 /* Pods_GithubFinderRN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubFinderRN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A040EB2829284D8E00114A76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A0177EF129342EFC00E0E181 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GithubFinderRN/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A09FA4052928AE090098B30C /* GithubFinderRN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = GithubFinderRN.entitlements; path = GithubFinderRN/GithubFinderRN.entitlements; sourceTree = "<group>"; };
 		A0B0E20E2929AC7D00B2A508 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "GithubFinderRN/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		A2706D4CF24850798A679498 /* Pods_GithubFinderRN_GithubFinderRNTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubFinderRN_GithubFinderRNTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +122,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A0177EF129342EFC00E0E181 /* GoogleService-Info.plist */,
 				A0B0E20E2929AC7D00B2A508 /* AppCenter-Config.plist */,
-				A040EB2829284D8E00114A76 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* GithubFinderRN */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* GithubFinderRNTests */,
@@ -253,9 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				A0177EF229342EFC00E0E181 /* GoogleService-Info.plist in Resources */,
 				A0B0E20F2929AC7D00B2A508 /* AppCenter-Config.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				A040EB2929284D8E00114A76 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
