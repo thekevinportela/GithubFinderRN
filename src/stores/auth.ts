@@ -3,8 +3,8 @@ import create from 'zustand';
 import {devtools, persist} from 'zustand/middleware';
 
 interface AuthState {
-  isOnboarding: boolean;
-  setOnboarding: () => void;
+  isOnboarding: boolean | null;
+  setOnboarding: (val: boolean) => void;
 }
 
 const useAuthStore = create<AuthState>()(
@@ -12,7 +12,7 @@ const useAuthStore = create<AuthState>()(
     persist(
       set => ({
         isOnboarding: true,
-        setOnboarding: () => set(() => ({isOnboarding: false})),
+        setOnboarding: val => set({isOnboarding: val}),
       }),
       {
         name: 'isOnboarding',

@@ -7,7 +7,7 @@ const Loader: React.FC<ILoaderProps> = ({}) => {
   const {height} = useWindowDimensions();
 
   return (
-    <Center bg={'gray.900'} flex={1}>
+    <Center bg={'black'} flex={1}>
       <Spinner
         // top={height * 0.5}
         // position={'absolute'}

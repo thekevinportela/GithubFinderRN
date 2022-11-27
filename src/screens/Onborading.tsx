@@ -22,7 +22,7 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      setOnboarding();
+      setOnboarding(false);
     }
   }
 
@@ -73,7 +73,7 @@ const Onborading: React.FC<IOnboradingProps> = ({}) => {
                 Allow
               </Button>
               <Button
-                onPress={setOnboarding}
+                onPress={() => setOnboarding(false)}
                 variant={'ghost'}
                 borderRadius={'lg'}
                 _text={{color: '#9DD5C0'}}
