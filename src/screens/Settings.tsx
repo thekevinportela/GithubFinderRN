@@ -6,7 +6,7 @@ export type ISettingsProps = {};
 const Settings: React.FC<ISettingsProps> = ({}) => {
   const logout = useAuthStore(state => state.logout);
   return (
-    <Center flex={1}>
+    <Center bg={'black'} flex={1}>
       <Button onPress={() => logout()}>LOGOUT</Button>
     </Center>
   );
