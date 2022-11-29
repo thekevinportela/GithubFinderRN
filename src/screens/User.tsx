@@ -1,25 +1,34 @@
 import {Box, Center, HStack, Icon, Image, ScrollView, Text} from 'native-base';
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import HeaderStat from '../components/HeaderStats';
 import {Loader} from '../components/Loader';
 import {useUserAndRepos} from '../hooks/reactQueryHooks';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {RepoList} from '../components/RepoList';
+import useAuthStore from '../stores/auth';
+import useFavoritesStore from '../stores/favoritesStore';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useNavigation} from '@react-navigation/native';
 
 export type IUserProps = {
   route: {params: string};
 };
 
 const User: React.FC<IUserProps> = ({route}) => {
+  const userID = useAuthStore(state => state.user?.uid);
+  const navigation = useNavigation();
   const profile = route.params;
+  const {addFavorite, deleteFavorite, favorites} = useFavoritesStore(state => ({
+    addFavorite: state.addFavorite,
+    deleteFavorite: state.deleteFavorite,
+    favorites: state.favorites,
+  }));
 
   const {status, data, refetch} = useUserAndRepos(profile);
 
   if (status === 'loading') {
     return <Loader />;
   }
-
-  const repos = data?.repos;
   const {
     name,
     type,
@@ -36,6 +45,34 @@ const User: React.FC<IUserProps> = ({route}) => {
     public_gists,
     hireable,
   } = data?.user;
+  const userIsFavorited = favorites.filter(
+    favorite => favorite.login === login,
+  );
+  console.log('IS FAVORITED?', userIsFavorited.length);
+  function handleHeart() {
+    if (userIsFavorited.length > 0) {
+      deleteFavorite(login);
+    } else {
+      addFavorite({avatar_url, login, userID});
+    }
+  }
+
+  const repos = data?.repos;
+  navigation.setOptions({
+    headerRight: () => {
+      return (
+        <Icon
+          as={AntDesign}
+          onPress={handleHeart}
+          name={userIsFavorited.length > 0 ? 'heart' : 'hearto'}
+          size={6}
+          color="white"
+        />
+      );
+    },
+  });
+
+  // const userIsFavorited = favorites.includes(login);
 
   return (
     <Box bg="black" h={'100%'}>

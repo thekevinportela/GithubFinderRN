@@ -2,9 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import create from 'zustand';
 import {devtools, persist} from 'zustand/middleware';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {setFavoritesListener} from './favoritesStore';
 
 auth().onAuthStateChanged(user => {
   useAuthStore.getState().checkAuth(user);
+  if (user) {
+    setFavoritesListener(user.uid);
+  }
 });
 
 interface AuthState {
