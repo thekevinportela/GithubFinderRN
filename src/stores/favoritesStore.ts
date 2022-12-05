@@ -6,12 +6,13 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
 import useAuthStore from './auth';
+import {useEffect} from 'react';
 
 type UseFavoritesState = {
   favorites: FavoriteItem[];
   addFavorite: (favorite: FavoriteItem) => void;
   deleteFavorite: (id: string) => void;
-  setFavorites: (favoritesFromFirebase: []) => void;
+  setFavorites: (favoritesFromFirebase: FavoriteItem[]) => void;
 };
 
 const useFavoritesStore = create<UseFavoritesState>()(
@@ -24,17 +25,21 @@ const useFavoritesStore = create<UseFavoritesState>()(
         });
       },
       addFavorite: favorite => {
-        firestore()
-          .collection('favorites')
-          .add({
-            login: favorite.login,
-            avatar_url: favorite.avatar_url,
-            userID: favorite.userID,
-          })
-          .then(() => {
-            console.log('Favorite added!');
-          });
-        set(state => ({favorites: [...state.favorites, favorite]}));
+        // firestore()
+        //   .collection('favorites')
+        //   .add({
+        //     login: favorite.login,
+        //     avatar_url: favorite.avatar_url,
+        //     userID: favorite.userID,
+        //   })
+        //   .then(() => {
+        //     console.log('Favorite added!');
+        //   });
+        firestore().doc(`favorites/${favorite.login}`).set({
+          login: favorite.login,
+          avatar_url: favorite.avatar_url,
+          userID: favorite.userID,
+        });
       },
       deleteFavorite: login => {
         firestore()
@@ -53,31 +58,35 @@ const useFavoritesStore = create<UseFavoritesState>()(
   ),
 );
 
-export function setFavoritesListener(uid: string) {
-  function onResult(
-    QuerySnapshot: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
-  ) {
-    const list: any = [];
-    QuerySnapshot.forEach(doc => {
-      const {login, avatar_url, userID} = doc.data();
-      list.unshift({
-        login,
-        avatar_url,
-        userID,
+export const useFavoritesListener = () => {
+  const userUID = useAuthStore(state => state.user?.uid);
+  const setFavorites = useFavoritesStore(state => state.setFavorites);
+  useEffect(() => {
+    function onResult(
+      QuerySnapshot: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>,
+    ) {
+      const list: any[] = [];
+      QuerySnapshot.forEach(doc => {
+        list.push({
+          ...doc.data(),
+          id: doc.id,
+        });
       });
-    });
-    useFavoritesStore.getState().setFavorites(list);
-  }
+      setFavorites(list);
+    }
 
-  function onError(error: Error) {
-    console.error(error);
-  }
+    function onError(error: Error) {
+      console.error(error);
+    }
 
-  const unsubscribe = firestore()
-    .collection('favorites')
-    .where('userID', '==', uid)
-    // .orderBy('postTime')
-    .onSnapshot(onResult, onError);
-}
+    const unsubscribe = firestore()
+      .collection('favorites')
+      .where('userID', '==', userUID)
+      // .orderBy('postTime')
+      .onSnapshot(onResult, onError);
+
+    return unsubscribe;
+  }, [userUID]);
+};
 
 export default useFavoritesStore;

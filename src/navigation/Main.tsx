@@ -7,11 +7,14 @@ import {Settings} from '../screens/Settings';
 import {FavouriteIcon, Icon, SearchIcon, Text, useTheme} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Favorites} from '../screens/Favorites';
+import {useFavoritesListener} from '../stores/favoritesStore';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Main = () => {
+  useFavoritesListener();
+
   return (
     <Stack.Navigator initialRouteName="HomeTabs">
       <Stack.Screen

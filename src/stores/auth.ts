@@ -6,9 +6,9 @@ import {setFavoritesListener} from './favoritesStore';
 
 auth().onAuthStateChanged(user => {
   useAuthStore.getState().checkAuth(user);
-  if (user) {
-    setFavoritesListener(user.uid);
-  }
+  // if (user) {
+  //   setFavoritesListener(user.uid);
+  // }
 });
 
 interface AuthState {

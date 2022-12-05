@@ -1,5 +1,6 @@
 import {Input, Icon, Box} from 'native-base';
 import {useEffect, useState} from 'react';
+import {TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export type ISearchBarProps = {
@@ -10,22 +11,18 @@ const SearchBar: React.FC<ISearchBarProps> = ({setSearch}) => {
   const [user, setUser] = useState('');
 
   return (
-    <Box w={'80%'} mt={4} mb={10}>
+    <Box w={'80%'} mt={4} mb={10} alignSelf="center">
       <Input
+        _input={{
+          selectionColor: '#ccc',
+        }}
         onSubmitEditing={() => {
           setSearch(user);
         }}
         focusOutlineColor={'white'}
         borderColor={'white'}
-        outlineColor={'white'}
-        accessibilityIgnoresInvertColors
-        tintColor={'white'}
-        colorScheme={'white'}
+        color="white"
         placeholderTextColor={'#aaa'}
-        selectionColor={'white'}
-        color={'white'}
-        cursorColor={'white'}
-        textDecorationColor={'white'}
         placeholder="Search Github Users"
         width="100%"
         borderRadius="xl"

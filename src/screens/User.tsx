@@ -45,12 +45,10 @@ const User: React.FC<IUserProps> = ({route}) => {
     public_gists,
     hireable,
   } = data?.user;
-  const userIsFavorited = favorites.filter(
-    favorite => favorite.login === login,
-  );
-  console.log('IS FAVORITED?', userIsFavorited.length);
+  const userIsFavorited = favorites.find(fav => fav.login === login);
+  console.log('IS FAVORITED?', userIsFavorited);
   function handleHeart() {
-    if (userIsFavorited.length > 0) {
+    if (userIsFavorited) {
       deleteFavorite(login);
     } else {
       addFavorite({avatar_url, login, userID});
@@ -64,7 +62,7 @@ const User: React.FC<IUserProps> = ({route}) => {
         <Icon
           as={AntDesign}
           onPress={handleHeart}
-          name={userIsFavorited.length > 0 ? 'heart' : 'hearto'}
+          name={userIsFavorited ? 'heart' : 'hearto'}
           size={6}
           color="white"
         />

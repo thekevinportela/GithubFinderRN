@@ -1,6 +1,7 @@
 import {Box, Center, FlatList, Text} from 'native-base';
 import React from 'react';
 import {UserItem} from '../components/UserItem';
+import {UserList} from '../components/UserList';
 import {UserResults} from '../components/UserResults';
 import useFavoritesStore from '../stores/favoritesStore';
 
@@ -10,16 +11,8 @@ const Favorites: React.FC<IFavoritesProps> = ({}) => {
   const favorites = useFavoritesStore(state => state.favorites);
   console.log(favorites);
   return favorites ? (
-    <Box bg={'black'} h={'100%'} width={'100%'}>
-      <FlatList
-        pointerEvents="auto"
-        scrollEnabled
-        contentInset={{bottom: 450, top: 20}}
-        data={favorites}
-        renderItem={({item}) => <UserItem user={item} />}
-        keyExtractor={item => item.login}
-        keyboardDismissMode="interactive"
-      />
+    <Box bg={'black'} flex={1} pt="4">
+      <UserList users={favorites} />
     </Box>
   ) : (
     <Center flex={1} bg={'black'}>

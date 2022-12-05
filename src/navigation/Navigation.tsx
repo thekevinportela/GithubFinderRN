@@ -28,7 +28,7 @@ const Navigation = () => {
     return <Loader />;
   }
 
-  console.log(isOnboarding);
+  // console.log(isOnboarding);
 
   return (
     <NavigationContainer>

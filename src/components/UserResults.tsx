@@ -4,6 +4,7 @@ import {FlatList} from 'react-native';
 import {useUsers} from '../hooks/reactQueryHooks';
 import {Loader} from './Loader';
 import {UserItem} from './UserItem';
+import {UserList} from './UserList';
 
 export type IUserResultsProps = {
   search: string;
@@ -18,23 +19,19 @@ const UserResults: React.FC<IUserResultsProps> = ({search}) => {
     }
   }, [search]);
 
-  if (status === 'loading') {
-    return <Loader />;
-  }
+  console.log('data', data);
+  // if (status === 'loading') {
+  //   return <Loader />;
+  // }
 
   return (
-    <Box width={'100%'}>
-      {search !== '' && (
-        <FlatList
-          pointerEvents="auto"
-          scrollEnabled
-          contentInset={{bottom: 450, top: 0}}
-          data={data}
-          renderItem={({item}) => <UserItem user={item} />}
-          keyExtractor={item => item.id}
-          keyboardDismissMode="interactive"
-        />
+    <Box flex={1}>
+      {status === 'loading' && (
+        <Box position={'absolute'} h="100%" w="100%">
+          <Loader />
+        </Box>
       )}
+      <UserList users={data || []} />
     </Box>
   );
 };
