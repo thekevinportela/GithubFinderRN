@@ -31,6 +31,7 @@ const useAuthStore = create<AuthState>()(
         isLoggedIn: false,
         initializing: true,
         checkAuth: user => {
+          console.log('USER', user);
           if (user) {
             set({
               user,
