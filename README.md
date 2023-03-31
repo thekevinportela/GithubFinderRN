@@ -2,7 +2,7 @@
 
 ### Github profile searching app using the Github API to display Github profiles in a social media style.
 
-- Built using React Native CLI, Native Base, Zustand, React Query, Firebase, and the GitHub API.
+- Built using React Native CLI, TypeScript, Native Base, Zustand, React Query, Firebase, and the GitHub API.
 
 <img src="screenshots/GithubFinder.png" />
 
